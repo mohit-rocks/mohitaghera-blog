@@ -7,7 +7,7 @@ import './style.scss'
 class PostTemplateDetails extends React.Component {
   render() {
     const { subtitle, author } = this.props.data.site.siteMetadata
-    const post = this.props.data.markdownRemark
+    const post = this.props.data
     const tags = post.fields.tagSlugs
 
     const homeBlock = (
@@ -47,15 +47,15 @@ class PostTemplateDetails extends React.Component {
         {homeBlock}
         <div className="post-single">
           <div className="post-single__inner">
-            <h1 className="post-single__title">{post.frontmatter.title}</h1>
+            <h1 className="post-single__title">{post.title}</h1>
             <div
               className="post-single__body"
               /* eslint-disable-next-line react/no-danger */
-              dangerouslySetInnerHTML={{ __html: post.html }}
+              dangerouslySetInnerHTML={{ __html: post.body.value }}
             />
             <div className="post-single__date">
               <em>
-                Published {moment(post.frontmatter.date).format('D MMM YYYY')}
+                Published {moment(post.created).format('D MMM YYYY')}
               </em>
             </div>
           </div>

@@ -7,9 +7,9 @@ module.exports = {
   siteMetadata: {
     url,
     siteUrl: url,
-    title: 'Blog by John Doe',
+    title: 'Blog by Mohit Aghera',
     subtitle:
-      'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+      'Technical Architect @Axelerant and OpenSource Enthusiast.',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
@@ -27,13 +27,11 @@ module.exports = {
       },
     ],
     author: {
-      name: 'John Doe',
+      name: 'Mohit Aghera',
       email: '#',
-      telegram: '#',
-      twitter: '#',
-      github: '#',
-      rss: '#',
-      vk: '#',
+      drupal: 'https://drupal.org/u/mohit_aghera',
+      twitter: '@mohit_rocks',
+      github: 'mohit-rocks',
     },
   },
   plugins: [
@@ -45,59 +43,10 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-feed',
+      resolve: `gatsby-source-drupal`,
       options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                url
-                title
-                description: subtitle
-              }
-            }
-          }
-        `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              allMarkdownRemark.edges.map(edge =>
-                Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.frontmatter.description,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.url + edge.node.fields.slug,
-                  guid: site.siteMetadata.url + edge.node.fields.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],
-                })
-              ),
-            query: `
-              {
-                allMarkdownRemark(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
-                ) {
-                  edges {
-                    node {
-                      html
-                      fields {
-                        slug
-                      }
-                      frontmatter {
-                        title
-                        date
-                        layout
-                        draft
-                        description
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            output: '/rss.xml',
-          },
-        ],
+        baseUrl: `http://mohitagherablog.lndo.site/`, // Umami Drupal setup with json api module enabled.
+        apiBase: `jsonapi`,
       },
     },
     {
