@@ -39,14 +39,12 @@ class Links extends React.Component {
             </a>
           </li>
           <li className="links__list-item">
-            <a href={`${links.drupal}`}>
+            <a href={`https://www.drupal.org/u/${links.drupal}`}>
               <i className="icon-paper-plane" />
             </a>
           </li>
         </ul>
-        <ul className="links__list">
-
-        </ul>
+        <ul className="links__list"></ul>
       </div>
     )
   }

@@ -10,6 +10,7 @@ class IndexRoute extends React.Component {
     const items = []
     const { title, subtitle } = this.props.data.site.siteMetadata
     const posts = this.props.data.allNodeBlog.edges
+    const about = this.props.data.nodePage
     posts.forEach(post => {
       items.push(<Post data={post} key={post.node.id} />)
     })
@@ -34,42 +35,45 @@ class IndexRoute extends React.Component {
 export default IndexRoute
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    site {
-      siteMetadata {
-        title
-        subtitle
-        copyright
-        menu {
-          label
-          path
-        }
-        author {
-          name
-          email
-          telegram
-          twitter
-          github
-          rss
-          vk
-        }
-      }
-    }
-    allNodeBlog(
-      limit: 1000
-      sort: { order: DESC, fields: [changed] }
-    ) {
-      edges {
-        node {
-          id
-          title
-          body {
-            value
-          }
-          created
-          changed
-        }
-      }
-    }
-  }
-`
+         query IndexQuery {
+           site {
+             siteMetadata {
+               title
+               subtitle
+               copyright
+               menu {
+                 label
+                 path
+               }
+               author {
+                 name
+                 email
+                 telegram
+                 twitter
+                 github
+                 rss
+                 vk
+                 drupal
+               }
+             }
+           }
+           allNodeBlog(limit: 1000, sort: { order: DESC, fields: [changed] }) {
+             edges {
+               node {
+                 id
+                 title
+                 body {
+                   value
+                 }
+                 created
+                 changed
+                 relationships {
+                   field_tags {
+                     name
+                   }
+                 }
+               }
+             }
+           }
+         }
+       `

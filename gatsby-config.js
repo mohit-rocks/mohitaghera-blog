@@ -29,9 +29,12 @@ module.exports = {
     author: {
       name: 'Mohit Aghera',
       email: '#',
-      drupal: 'https://drupal.org/u/mohit_aghera',
+      drupal: 'mohit_aghera',
       twitter: '@mohit_rocks',
       github: 'mohit-rocks',
+      vk: '#',
+      rss: '#',
+      telegram: '#'
     },
   },
   plugins: [
