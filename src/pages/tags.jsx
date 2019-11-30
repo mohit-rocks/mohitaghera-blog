@@ -8,14 +8,14 @@ import Sidebar from '../components/Sidebar'
 class TagsRoute extends React.Component {
   render() {
     const { title } = this.props.data.site.siteMetadata
-    const tags = this.props.data.allMarkdownRemark.group
+    var tags = ''
 
     return (
       <Layout>
         <div>
           <Helmet title={`All Tags - ${title}`} />
           <Sidebar {...this.props} />
-          <div className="content">
+          {/* <div className="content">
             <div className="content__inner">
               <div className="page">
                 <h1 className="page__title">Tags</h1>
@@ -37,7 +37,7 @@ class TagsRoute extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </Layout>
     )
@@ -66,15 +66,6 @@ export const pageQuery = graphql`
           rss
           vk
         }
-      }
-    }
-    allMarkdownRemark(
-      limit: 2000
-      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
-    ) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
       }
     }
   }
