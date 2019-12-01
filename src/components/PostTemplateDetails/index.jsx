@@ -7,8 +7,11 @@ import './style.scss'
 class PostTemplateDetails extends React.Component {
   render() {
     const { subtitle, author } = this.props.data.site.siteMetadata
-    const post = this.props.data
-    const tags = post.fields.tagSlugs
+    const post = this.props.data.nodeBlog
+    let terms = []
+    for (let i = 0; i < post.relationships.field_tags.length; i++) {
+      terms.push(post.relationships.field_tags[i].name)
+    }
 
     const homeBlock = (
       <div>
@@ -18,20 +21,20 @@ class PostTemplateDetails extends React.Component {
       </div>
     )
 
-    // const tagsBlock = (
-    //   <div className="post-single__tags">
-    //     <ul className="post-single__tags-list">
-    //       {tags &&
-    //         tags.map((tag, i) => (
-    //           <li className="post-single__tags-list-item" key={tag}>
-    //             <Link to={tag} className="post-single__tags-list-item-link">
-    //               {post.frontmatter.tags[i]}
-    //             </Link>
-    //           </li>
-    //         ))}
-    //     </ul>
-    //   </div>
-    // )
+    const tagsBlock = (
+      <div className="post-single__tags">
+        <ul className="post-single__tags-list">
+          {terms &&
+            terms.map((tag, i) => (
+              <li className="post-single__tags-list-item" key={tag}>
+                <Link to="#" className="post-single__tags-list-item-link">
+                  {terms[i]}
+                </Link>
+              </li>
+            ))}
+        </ul>
+      </div>
+    )
 
     const commentsBlock = (
       <div>
