@@ -48,7 +48,7 @@ module.exports = {
     {
       resolve: `gatsby-source-drupal`,
       options: {
-        baseUrl: `http://mohitagherablog.lndo.site/`, // Umami Drupal setup with json api module enabled.
+        baseUrl: `https://dev-mohit-aghera-blog.pantheonsite.io/`, // Umami Drupal setup with json api module enabled.
         apiBase: `jsonapi`,
       },
     },
