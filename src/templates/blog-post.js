@@ -1,7 +1,7 @@
 import React from "react"
 import Helmet from 'react-helmet'
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import PostTemplateDetails from '../components/PostTemplateDetails'
 
 class PostTemplate extends React.Component {
